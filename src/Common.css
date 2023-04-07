@@ -1,22 +1,54 @@
-/* Main common css rules */
 .HeaderSection,
 .container {
-  width: 1000px;
+  width: 887px;
   margin: 0 auto;
 }
-/* END Main common css rules */
 
+.HeaderSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
 
+}
+header img {
+  position: relative;
+  bottom: -3px;
+}
+.Navbar ul {
+  text-align: center;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.Navbar ul li,
+.Navbar ul li a {
+  list-style: none;
+  text-decoration: none;
+  color: var(--secondary-black);
+  font-family: Karla;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.Navbar ul li {
+  margin: 10px;
+}
 /* .HeaderSection {
   border: 1px tomato solid;
 } */
 
+
+/* Main common css rules */
 .MainSection {
   width: 100svw;
   height: auto;
 }
 .hero-sections {
-  background-color: #495E57;
+  background-color: var(--primary-green);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,10 +58,13 @@
 .container-hero {
   display: grid;
   grid-template-columns: auto auto;
+  position: relative;
+  top: 0;
+  left: 0;
 }
 .text-two-section,
 .image-two-section {
-  width: 500px;
+  width: 443px;
   height: 415px;
 }
 .image-two-section {
@@ -106,10 +141,11 @@
 }
 .text-about-section,
 .image-about-section {
-  width: 500px;
+  width: 443px;
   height: 100%;
   border: 1px tomato solid;
 }
+/* END Main common css rules */
 
 /* Footer */
 .FooterSection {
@@ -119,7 +155,7 @@
 }
 .FooterSection section {
   display: grid;
-  grid-template-columns: 250px 250px 250px 250px;
+  grid-template-columns: 220px 220px 220px 220px;
   align-items: center;
   justify-content: center;
   height: 400px;
@@ -127,6 +163,6 @@
 
 .FooterSection section div {
   border: 1px tomato solid;
-  width: 250px;
+  width: 220px;
   height: 253px;
 }

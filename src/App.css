@@ -1,3 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300;0,400;1,500;1,600;1,700;1,800&family=Markazi+Text:wght@400;500;600;700&display=swap');
+
+:root {
+  --secondary-black: #333333;
+  --dropdown-color: #EDEFEE;
+  --hover-effect: #839F96;
+  --primary-green: #495E57;
+  --primary-yellow: #F4CE14;
+  --secondary-peach: #EE9972;
+  --secondary-beige: #FBDABB;
+  --secondary-pastel: #EDEFEE;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
 }
@@ -35,34 +53,5 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-.HeaderSection {
-  display: flex;
-  align-items: center;
-  justify-content:center;
-  width: 100vw;
-  height: 80px;
-
-}
-header img {
-  position: relative;
-  bottom: -3px;
-}
-.Navbar ul {
-  text-align: center;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-evenly;
-    align-items: center;
-}
-.Navbar ul li,
-.Navbar ul li a {
-  list-style: none;
-  text-decoration: none;
-  color: #333333;
-}
-.Navbar ul li {
-  margin: 10px;
 }
 

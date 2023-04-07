@@ -6,10 +6,10 @@ function Main() {
               <div className='container-hero'>
 
                 <div className="text-two-section">
-                  <h1></h1>
-                  <h4></h4>
-                  <div className="text-two-section-description"></div>
-                  <button>Reserve a Table</button>
+                  <h1>Little Lemon</h1>
+                  <h4>Chicago</h4>
+                  <div className="text-two-section-description">We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.</div>
+                  <button className="reserve">Reserve a Table</button>
                 </div>
                 <div className="image-two-section">
                   <div className='container-img'>
