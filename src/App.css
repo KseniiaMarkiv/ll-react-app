@@ -37,8 +37,32 @@
   }
 }
 
+.HeaderSection {
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  width: 100vw;
+  height: 80px;
+
+}
+header img {
+  position: relative;
+  bottom: -3px;
+}
+.Navbar ul {
+  text-align: center;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
 .Navbar ul li,
 .Navbar ul li a {
   list-style: none;
   text-decoration: none;
+  color: #333333;
 }
+.Navbar ul li {
+  margin: 10px;
+}
+
