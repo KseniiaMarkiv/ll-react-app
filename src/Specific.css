@@ -41,4 +41,102 @@ button.reserve {
   border: 0;
   border-radius: 15px;
   margin-top: 20px;
+  cursor: pointer;
+}
+/* .container-specials {
+  display: flex;
+  flex-direction: row;
+} */
+.specials-header {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.specials-header h3 {
+  font-family: Markazi Text;
+  font-size: 53px;
+  font-weight: 500;
+}
+.specials-header button {
+  background-color: var(--primary-yellow);
+  color: var(--secondary-black);
+  font-family: Karla;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  height: 47px;
+  width: 164px;
+  border-radius: 15px;
+  border: 0;
+  cursor: pointer;
+}
+.article-specials {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 31px;
+}
+
+.specials-card {
+  display: flex;
+  flex-direction: column;
+}
+.card-img {
+  height: 156px;
+  width: 265px;
+  border-radius: 10px 10px 0 0;
+}
+.card-img img {
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+.card-text {
+  height: 257px;
+  width: 268px;
+  padding: 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+}
+.card-header h5 {
+  font-family: Karla;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 21px;
+}
+.card-price {
+  font-family: Karla;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21px;
+  color: var(--secondary-peach);
+}
+.card-description {
+  font-family: Karla;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  color: var(--primary-green);
+}
+.card-link {
+  font-family: Karla;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  display: flex;
+  justify-content: flex-start;
+}
+.card-link svg {
+  width: 20px;
+  height: 20px;
+  margin-left: 11px;
+  position: relative;
+  top: -3px;
 }

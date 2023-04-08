@@ -91,6 +91,7 @@ header img {
 .specials-sections {
   width: 100%;
   height: 768px;
+  color: var(--secondary-black);
 }
 .specials-sections header {
   padding-top: 136px;
@@ -101,12 +102,12 @@ header img {
   margin-top: 90px;
 }
 
-.specials-imgs {
+.specials-card {
   height: 414px;
   width: 268px;
-  border: 1px tomato solid;
+  background-color: var(--secondary-pastel);
+  border-radius: 10px 10px 0 0;
 }
-
 
 .testimonials-sections {
   background-color: #CCCBCB;
