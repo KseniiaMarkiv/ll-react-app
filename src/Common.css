@@ -37,10 +37,6 @@ header img {
 .Navbar ul li {
   margin: 10px;
 }
-/* .HeaderSection {
-  border: 1px tomato solid;
-} */
-
 
 /* Main common css rules */
 .MainSection {
@@ -70,6 +66,7 @@ header img {
 .image-two-section {
   display: flex;
   justify-content: flex-end;
+  padding-top: 28px;
 }
 .container-img {
   width: 376px;
