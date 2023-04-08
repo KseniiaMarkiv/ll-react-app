@@ -77,7 +77,6 @@ header img {
   overflow: hidden;
   border-radius: 15px;
   position: relative;
-  bottom: -28px;
   display: grid;
   align-items: center;
   justify-content: center;
@@ -99,6 +98,7 @@ header img {
 .specials-sections article {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   margin-top: 90px;
 }
 
@@ -135,14 +135,13 @@ header img {
   height: 532px;
   width: 868px;
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: repeat(2, auto);
   padding-top: 88px;
 }
 .text-about-section,
 .image-about-section {
   width: 443px;
   height: 100%;
-  border: 1px tomato solid;
 }
 /* END Main common css rules */
 
@@ -161,7 +160,6 @@ header img {
 }
 
 .FooterSection section div {
-  border: 1px tomato solid;
   width: 220px;
   height: 253px;
 }

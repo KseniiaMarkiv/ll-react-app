@@ -1,6 +1,7 @@
 import './App.css';
 import './Common.css';
 import './Specific.css';
+import './Footer.css';
 import Header from './components/Header';
 import Nav from './components/Nav';
 import Main from './components/Main';

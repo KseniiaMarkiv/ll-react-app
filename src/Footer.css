@@ -1,0 +1,40 @@
+
+/* FOOTER */
+
+.footer-sec-one {
+  position: relative;
+}
+.footer-sec-one img {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.footer-sec-two,
+.footer-sec-three,
+.footer-sec-four {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  padding-top: 30px;
+}
+.footer-sec-two a,
+.footer-sec-three a,
+.footer-sec-four a {
+  font-family: Karla;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 23px;
+  text-decoration: none;
+  color: var(--secondary-black);
+}
+
+.footer-sec-three a:nth-child(2),
+.footer-sec-four a:nth-child(2){
+  margin-top: 20px;
+}
+
+
+
+
+

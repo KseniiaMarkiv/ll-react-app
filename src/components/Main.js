@@ -23,7 +23,6 @@ function Main() {
 
           <section className='specials-sections'>
             <div className='container'>
-              {/* <div className="container-specials"> */}
                 <header className="specials-header">
                   <h3>This weeks specials!</h3>
                   <button>Online Menu</button>
@@ -114,7 +113,6 @@ function Main() {
 
                   </div>
                 </article>
-              {/* </div> */}
             </div>
           </section>
 
@@ -170,15 +168,21 @@ function Main() {
 
           <section className='about-sections'>
             <div className='container'>
-              <article>
+              <article className="article-about">
                 <div className="text-about-section">
-                  <h1></h1>
-                  <h4></h4>
-                  <div className="text-about-section-description"></div>
+                  <h1>Little Lemon</h1>
+                  <h4>Chicago</h4>
+                  <div className="text-about-section-description">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur numquam, facilis veritatis amet incidunt officia pariatur non natus corporis.
+                    Corrupti debitis quia ullam consequatur commodi. Deserunt dolor sit similique dolorum.
+                  </div>
                 </div>
                 <div className="image-about-section">
-                  <div className='container-img'>
-                   <img src="" alt="Photo of owners restaurant, Mario and Adrian" width={270} height={368}/>
+                  <div className='container-img-first'>
+                    <img src="./Assets/Mario and Adrian A.jpg" alt="Photo of owners restaurant, Mario and Adrian" width={552} height={368}/>
+                  </div>
+                  <div className='container-img-second'>
+                    <img src="./Assets/restaurant chef B.jpg" alt="Photo of owner restaurant, Adrian" width={552} height={368}/>
                   </div>
                 </div>
               </article>
