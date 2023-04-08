@@ -111,7 +111,7 @@ function Main() {
                         </svg>
                       </p>
                     </div>
-                    
+
                   </div>
                 </article>
               {/* </div> */}
@@ -123,11 +123,47 @@ function Main() {
               <header className="testimonials-header">
                 <h4>Testimonials</h4>
               </header>
-              <article>
-                <div className='testimonials-imgs'></div>
-                <div className='testimonials-imgs'></div>
-                <div className='testimonials-imgs'></div>
-                <div className='testimonials-imgs'></div>
+              <article className="article-testimonials">
+                <div className='testimonials-imgs'>
+                  <p className="rating-header">Ratings</p>
+                  <div className="user-icon">
+                    <div className="user-img">
+                      <img src="./Assets/user.gif" alt="Photo User rating" width={50} height={50}/>
+                    </div>
+                    <div className="user-name">User</div>
+                  </div>
+                  <p className="review">Review</p>
+                </div>
+                <div className='testimonials-imgs'>
+                  <p className="rating-header">Ratings</p>
+                  <div className="user-icon">
+                    <div className="user-img">
+                      <img src="./Assets/user.gif" alt="Photo User rating" width={50} height={50}/>
+                    </div>
+                    <div className="user-name">User</div>
+                  </div>
+                  <p className="review">Review</p>
+                </div>
+                <div className='testimonials-imgs'>
+                  <p className="rating-header">Ratings</p>
+                  <div className="user-icon">
+                    <div className="user-img">
+                      <img src="./Assets/user.gif" alt="Photo User rating" width={50} height={50}/>
+                    </div>
+                    <div className="user-name">User</div>
+                  </div>
+                  <p className="review">Review</p>
+                </div>
+                <div className='testimonials-imgs'>
+                  <p className="rating-header">Ratings</p>
+                  <div className="user-icon">
+                    <div className="user-img">
+                      <img src="./Assets/user.gif" alt="Photo User rating" width={50} height={50}/>
+                    </div>
+                    <div className="user-name">User</div>
+                  </div>
+                  <p className="review">Review</p>
+                </div>
               </article>
             </div>
           </section>

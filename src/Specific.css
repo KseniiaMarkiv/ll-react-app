@@ -94,7 +94,7 @@ button.reserve {
 }
 .card-text {
   height: 257px;
-  width: 268px;
+  width: 265px;
   padding: 20px;
   text-align: left;
   display: flex;
@@ -139,4 +139,56 @@ button.reserve {
   margin-left: 11px;
   position: relative;
   top: -3px;
+}
+
+.testimonials-header h4 {
+  font-family: Karla;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 37px;
+}
+.article-testimonials {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 20px;
+  text-align: left;
+}
+.testimonials-imgs {
+  background-color: #EFEEEE;
+  padding: 25px 18px;
+  row-gap: 12px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+.rating-header {
+  font-family: Karla;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+}
+.user-icon {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  align-items: center;
+  justify-content: start;
+}
+.user-img {
+  width: 50px;
+  height: 50px;
+}
+.user-name {
+  font-family: Karla;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  color: var(--primary-green);
+  padding-left: 10px;
+}
+.review {
+  font-family: Karla;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14px;
 }

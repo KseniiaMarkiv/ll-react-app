@@ -104,7 +104,7 @@ header img {
 
 .specials-card {
   height: 414px;
-  width: 268px;
+  width: 265px;
   background-color: var(--secondary-pastel);
   border-radius: 10px 10px 0 0;
 }
@@ -125,8 +125,6 @@ header img {
 .testimonials-imgs {
   height: 162px;
   width: 200px;
-  border: 1px tomato solid;
-
 }
 
 .about-sections {
