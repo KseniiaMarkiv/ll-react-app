@@ -55,3 +55,10 @@
   }
 }
 
+.future-page {
+  color: tomato;
+  height: 500px;
+}
+.future-page::after {
+  content: '😜';
+}

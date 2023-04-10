@@ -1,13 +1,38 @@
+import { Link, Routes, Route } from 'react-router-dom';
+
 function Nav() {
+  const handleClick = (anchor) => () => {
+    const id = `${anchor}-section`;
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+  
   return (
       <nav className="Navbar">
         <ul>
-        <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Menu</a></li>
-          <li><a href="#">Reservations</a></li>
-          <li><a href="#">Order Online</a></li>
-          <li><a href="#">Login</a></li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/#about" onClick={handleClick('about')}>About</Link>
+          </li>
+          <li>
+            <Link to="/menu">Menu</Link>
+          </li>
+          <li>
+            <Link to="/reservations">Reservations</Link>
+          </li>
+          <li>
+            <Link to="/#specials" onClick={handleClick('specials')}>Order Online</Link>
+          </li>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
         </ul>
       </nav>
   );
