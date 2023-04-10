@@ -1,9 +1,21 @@
-function Reservations() {
-  // write your own code
+import BookingForm from './BookingForm';
+import '../Reservation.css';
+
+
+
+function BookingPage() {
   return (
-  // write your own code
-    <h1 className="future-page">Reservations Page </h1>
+    <div className='App'>
+      <div className='booking-jumpotron'>
+        <img src="./Assets/restaurant.jpg" alt='Photo of restaurant' />
+      </div>
+      <div className='container booking-container'>
+        <p className='reserve-header-img'>Booking Page</p>
+        <h1 className='reserve-header'>Reserve a table</h1>
+        <BookingForm />
+      </div>
+    </div>
   );
 }
 
-export default Reservations;
+export default BookingPage;

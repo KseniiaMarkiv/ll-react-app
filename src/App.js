@@ -9,7 +9,7 @@ import Nav from './components/Nav';
 import Main from './components/Main';
 import About from './components/About';
 import Menu from './components/Menu';
-import Reservations from './components/Reservations';
+import BookingPage from './components/Reservations';
 import Specials from './components/Specials';
 import Login from './components/Login';
 import Footer from './components/Footer';
@@ -27,7 +27,7 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/#about" element={<About />} />
         <Route path="/menu" element={<Menu />} />
-        <Route path="/reservations" element={<Reservations />} />
+        <Route path="/reservations" element={<BookingPage />} />
         <Route path="/#specials" element={<Specials />} />
         <Route path="/login" element={<Login />} />
       </Routes>

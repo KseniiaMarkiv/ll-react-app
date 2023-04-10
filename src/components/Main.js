@@ -13,7 +13,9 @@ function Main() {
                   <h1>Little Lemon</h1>
                   <h4>Chicago</h4>
                   <div className="text-two-section-description">We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.</div>
-                  <button className="reserve">Reserve a Table</button>
+                  <form action = "/reservations">
+                      <button className="reserve">Reserve a Table</button>
+                  </form>
                 </div>
                 <div className="image-two-section">
                   <div className='container-img'>
