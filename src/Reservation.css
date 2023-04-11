@@ -32,3 +32,10 @@
   font-weight: 700;
   line-height: 37px;
 }
+.reserve-details {
+  font-family: Karla;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 30px;
+  padding-bottom: 10px;
+}
