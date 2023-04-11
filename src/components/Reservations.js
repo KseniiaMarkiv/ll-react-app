@@ -2,7 +2,7 @@ import BookingForm from './BookingForm';
 import '../Reservation.css';
 import React, { useReducer } from 'react';
 
-function initializeTimes() {
+export const initializeTimes = () => {
   return [
     { time: '17:00', isAvailable: true },
     { time: '18:00', isAvailable: true },
@@ -12,7 +12,7 @@ function initializeTimes() {
     { time: '22:00', isAvailable: true },
   ];
 }
-function updateTimes(state, action) {
+export const updateTimes = (state, action) => {
   return initializeTimes();
 }
 

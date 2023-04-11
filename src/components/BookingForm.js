@@ -73,7 +73,7 @@ function BookingForm(props) {
           <option>Birthday</option>
           <option>Anniversary</option>
         </select>
-        <button type="submit" disabled={!date || !time || !guests}>Book table</button>
+        <button type="submit" role="button" name="submit-btn" disabled={!date || !time || !guests}>Book table</button>
       </form>
   );
 }
