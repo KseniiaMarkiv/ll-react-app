@@ -2,31 +2,36 @@ import React, { useState } from "react";
 
 function BookingForm(props) {
   const { availableTimes, dispatch } = props;
+  
   const [date, setDate] = useState(new Date().toJSON().slice(0, 10));
   const [time, setTime] = useState('');
   const [guests, setGuests] = useState('1');
   const [occasion, setOccasion] = useState('');
 
-  function handleDateChange(event) {
-    const selectedDate = event.target.value;
-    dispatch({ type: 'updateTimes', payload: { date: selectedDate } });
+  function handleDateChange(e) {
+    e.preventDefault();
+    const selectedDate = e.target.value;
+    dispatch({ type: 'UPDATE_TIMES', payload: { date: selectedDate } });
     setDate(selectedDate);
   }
 
-  function handleTimeChange(event) {
-    setTime(event.target.value);
+  function handleTimeChange(e) {
+    e.preventDefault();
+    setTime(e.target.value);
   }
 
-  function handleGuestsChange(event) {
-    setGuests(event.target.value);
+  function handleGuestsChange(e) {
+    e.preventDefault();
+    setGuests(e.target.value);
   }
 
-  function handleOccasionChange(event) {
-    setOccasion(event.target.value);
+  function handleOccasionChange(e) {
+    e.preventDefault();
+    setOccasion(e.target.value);
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  function handleSubmit(e) {
+    e.preventDefault();
     const data = {
       date: date,
       time: time,
