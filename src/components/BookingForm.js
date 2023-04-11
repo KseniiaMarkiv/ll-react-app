@@ -1,19 +1,41 @@
-import { useState } from "react";
-import { useReducer } from 'react';
+import React, { useState } from "react";
 
-function BookingForm({ availableTimes, setAvailableTimes }) {
+function BookingForm(props) {
+  const { availableTimes, dispatch } = props;
   const [date, setDate] = useState(new Date().toJSON().slice(0, 10));
-  const [time, setTime] = useState('17:00');
-  const [guests, setGuests] = useState(1);
-  const [occasion, setOccasion] = useState("Birthday");
+  const [time, setTime] = useState('');
+  const [guests, setGuests] = useState('1');
+  const [occasion, setOccasion] = useState('');
 
+  function handleDateChange(event) {
+    const selectedDate = event.target.value;
+    dispatch({ type: 'updateTimes', payload: { date: selectedDate } });
+    setDate(selectedDate);
+  }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    // dispatch({ type: 'UPDATE_TIMES' });
-    const data = [date, time, guests, occasion];
+  function handleTimeChange(event) {
+    setTime(event.target.value);
+  }
+
+  function handleGuestsChange(event) {
+    setGuests(event.target.value);
+  }
+
+  function handleOccasionChange(event) {
+    setOccasion(event.target.value);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const data = {
+      date: date,
+      time: time,
+      guests: guests,
+      occasion: occasion,
+    }
     alert(JSON.stringify(data, null, 1));
   }
+
 
   return (
       <form onSubmit={handleSubmit} style={{ display: 'grid', maxWidth: '200px', gap: '10px' }}>
@@ -21,20 +43,18 @@ function BookingForm({ availableTimes, setAvailableTimes }) {
         <input 
               type="date" 
               id="res-date"
-              value={date}
-              onChange={(e) => {
-                setDate(e.target.value);
-              }} />
+              min={new Date().toJSON().slice(0, 10)} max="2023-12-31" 
+              value={date} 
+              onChange={handleDateChange}  />
         <label htmlFor="res-time">Select time</label>
         <select 
                id="res-time"
-               value={time}
-               onChange={(e) => {
-                setTime(e.target.value);
-               }} >
-          {availableTimes.map((time) => (
-          <option key={time} value={time}>
-            {time}
+               value={time} 
+               onChange={handleTimeChange}
+               >
+          {availableTimes.map((timeSlot) => (
+          <option key={timeSlot.time} value={timeSlot.time} disabled={!timeSlot.isAvailable}>
+            {timeSlot.time}
           </option>
         ))}
         </select>
@@ -42,22 +62,18 @@ function BookingForm({ availableTimes, setAvailableTimes }) {
         <input 
              type="number" 
              placeholder="1" min="1" max="10" 
-             id="guests" 
-             value={guests}
-              onChange={(e) => {
-                setGuests(e.target.value);
-              }} />
+             id="guests"
+             value={guests} 
+             onChange={handleGuestsChange} />
         <label htmlFor="occasion">Occasion</label>
         <select 
              id="occasion"
-             value={occasion}
-              onChange={(e) => {
-                setOccasion(e.target.value);
-              }}>
+             value={occasion} 
+             onChange={handleOccasionChange} >
           <option>Birthday</option>
           <option>Anniversary</option>
         </select>
-        <button type="submit">Book table</button>
+        <button type="submit" disabled={!date || !time || !guests}>Book table</button>
       </form>
   );
 }
