@@ -25,7 +25,6 @@ function BookingPage() {
         <img src="./Assets/restaurant.jpg" alt='Photo of restaurant' />
       </div>
       <div className='container booking-container'>
-        <p className='reserve-header-img'>Booking Page</p>
         <h1 className='reserve-header'>Reserve a table</h1>
         <BookingForm availableTimes={availableTimes} dispatch={dispatch} />
       </div>

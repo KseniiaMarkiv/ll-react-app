@@ -17,10 +17,10 @@ header img {
 }
 .Navbar ul {
   text-align: center;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-evenly;
-    align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: center;
 }
 .Navbar ul li, 
 .Navbar ul li a {
@@ -33,9 +33,14 @@ header img {
   line-height: 23px;
   letter-spacing: 0em;
   text-align: left;
+  transition: 0.7s ease;
 }
 .Navbar ul li {
   margin: 10px;
+}
+.Navbar ul li a:hover {
+  color: var(--primary-yellow);
+  transition: 0.7s ease;
 }
 
 /* Main common css rules */
@@ -145,8 +150,7 @@ header img {
 
 /* Footer */
 .FooterSection {
-  background-color: #E8E7E7;
-  width: 100svw;
+  background-color: var(--primary-green);
   height: 400px;
 }
 .FooterSection section {

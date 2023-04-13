@@ -43,17 +43,19 @@ function BookingForm(props) {
 
 
   return (
-      <form onSubmit={handleSubmit} style={{ display: 'grid', maxWidth: '200px', gap: '10px' }}>
-        <label htmlFor="res-date">Choose date</label>
+      <form className="booking-form" onSubmit={handleSubmit} >
+        <label className="reserve-label" htmlFor="res-date">Choose date</label>
         <input 
+              className="reserve-input" 
               type="date" 
               id="res-date"
               min={new Date().toJSON().slice(0, 10)} max="2023-12-31" 
               value={date} 
               onChange={handleDateChange}  />
-        <label htmlFor="res-time">Select time</label>
+        <label className="reserve-label" htmlFor="res-time">Select time</label>
         <select 
-               id="res-time"
+             className="reserve-input"
+             id="res-time"
                value={time} 
                onChange={handleTimeChange}
                >
@@ -63,15 +65,17 @@ function BookingForm(props) {
           </option>
         ))}
         </select>
-        <label htmlFor="guests">Number of guests</label>
+        <label className="reserve-label" htmlFor="guests">Number of guests</label>
         <input 
+              className="reserve-input" 
              type="number" 
              placeholder="1" min="1" max="10" 
              id="guests"
              value={guests} 
              onChange={handleGuestsChange} />
-        <label htmlFor="occasion">Occasion</label>
+        <label className="reserve-label" htmlFor="occasion">Occasion</label>
         <select 
+             className="reserve-input"
              id="occasion"
              value={occasion} 
              onChange={handleOccasionChange} >
