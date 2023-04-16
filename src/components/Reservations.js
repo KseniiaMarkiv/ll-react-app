@@ -1,23 +1,63 @@
 import BookingForm from './BookingForm';
 import '../Reservation.css';
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
+import { fetchAPI, submitAPI } from './api';
+export const BookingContext = React.createContext();
 
-export const initializeTimes = () => {
-  return [
-    { time: '17:00', isAvailable: true },
-    { time: '18:00', isAvailable: true },
-    { time: '19:00', isAvailable: true },
-    { time: '20:00', isAvailable: true },
-    { time: '21:00', isAvailable: true },
-    { time: '22:00', isAvailable: true },
-  ];
-}
+
+
+const initializeTimes = {
+  date: new Date(),
+  time: '',
+  guests: 1,
+  occasion: '',
+  availableTimes: [],
+};
+
+
 export const updateTimes = (state, action) => {
-  return initializeTimes();
+  switch (action.type) {
+    case 'SET_DATE':
+      return {
+        ...state,
+        date: action.payload.date,
+        time: '',
+        availableTimes: action.payload.availableTimes,
+      };
+    case 'SET_TIME':
+      return {
+        ...state,
+        time: action.payload.time,
+      };
+      case 'SET_GUESTS':
+        return {
+          ...state,
+          guests: action.payload.guests,
+        };
+      case 'SET_OCCASION':
+        return {
+          ...state,
+          occasion: action.payload.occasion,
+        };
+    default:
+      return state;
+  }
 }
+
 
 function BookingPage() {
-  const [availableTimes, dispatch] = useReducer(updateTimes, [], initializeTimes);
+  const [state, dispatch] = useReducer(updateTimes, initializeTimes);
+
+  useEffect(() => {
+    console.log('Effect ran!', state);
+  }, [state]);
+  useEffect(() => {
+    const getAvailableTimes = async () => {
+      const availableTimes = await fetchAPI(state.date);
+      dispatch({ type: 'SET_DATE', payload: { date: state.date, availableTimes } });
+    };
+    getAvailableTimes();
+  }, [state.date]);
 
   return (
     <div className='App'>
@@ -26,10 +66,15 @@ function BookingPage() {
       </div>
       <div className='container booking-container'>
         <h1 className='reserve-header'>Reserve a table</h1>
-        <BookingForm availableTimes={availableTimes} dispatch={dispatch} />
+        <BookingContext.Provider value={{ state, dispatch }}>
+          <BookingForm />
+        </BookingContext.Provider>
       </div>
     </div>
   );
 }
 
 export default BookingPage;
+
+
+
