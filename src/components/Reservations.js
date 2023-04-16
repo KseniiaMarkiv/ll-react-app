@@ -2,17 +2,19 @@ import BookingForm from './BookingForm';
 import '../Reservation.css';
 import React, { useEffect, useReducer } from 'react';
 import { fetchAPI, submitAPI } from './api';
+
 export const BookingContext = React.createContext();
 
-
-
 const initializeTimes = {
-  date: new Date(),
-  time: '',
-  guests: 1,
-  occasion: '',
-  availableTimes: [],
+
+    date: new Date(),
+    time: "",
+    guests: 1,
+    occasion: "",
+    availableTimes: [],
+
 };
+
 
 
 export const updateTimes = (state, action) => {
@@ -48,9 +50,9 @@ export const updateTimes = (state, action) => {
 function BookingPage() {
   const [state, dispatch] = useReducer(updateTimes, initializeTimes);
 
-  useEffect(() => {
-    console.log('Effect ran!', state);
-  }, [state]);
+  // useEffect(() => {
+  //   console.log('Effect ran!', state);
+  // }, [state]);
   useEffect(() => {
     const getAvailableTimes = async () => {
       const availableTimes = await fetchAPI(state.date);
