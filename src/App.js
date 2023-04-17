@@ -13,6 +13,7 @@ import BookingPage from './components/Reservations';
 import Specials from './components/Specials';
 import Login from './components/Login';
 import Footer from './components/Footer';
+import ConfirmedBooking from './components/ConfirmedBooking';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path="/reservations" element={<BookingPage />} />
         <Route path="/#specials" element={<Specials />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/confirmation" element={<ConfirmedBooking />} />
       </Routes>
       <Footer/>
     </Router>

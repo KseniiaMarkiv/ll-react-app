@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Ubuntu+Mono&display=swap');
+
 .booking-jumpotron {
   width: 100%;
   height: 300px;
@@ -16,10 +18,12 @@
 .booking-container {
   text-align: left;
   position: relative;
-  margin: 50px auto 200px auto;
+  margin: 50px auto 70px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 800px;
+  width: 100%;
 }
 
 .reserve-header {
@@ -27,7 +31,7 @@
   font-size: 32px;
   font-weight: 700;
   line-height: 37px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   text-align: center;
 }
 
@@ -40,8 +44,9 @@
 }
 .booking-form {
   display: grid;
-  max-width: 200px;
   justify-content: center;
+  max-width: 700px;
+  width: 100%;
 }
 .reserve-label {
   font-family: Karla;
@@ -65,6 +70,20 @@
   color: #4E5A56;
   margin-bottom: 20px;
 }
+.reserve-input::placeholder {
+  font-family: 'Ubuntu Mono', monospace;
+  font-weight: 400;
+  color: #7e7e7e;
+}
+.additional-comment {
+  width: 386px;
+  padding: 10px;
+}
+.additional-comment::placeholder {
+  font-family: 'Ubuntu Mono', monospace;
+  font-weight: 400;
+  color: #7e7e7e;
+}
 select.reserve-input {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -73,8 +92,13 @@ select.reserve-input {
   background-position-x: 98%;
   background-position-y: 5px;
 }
-
-button[name=submit-btn] {
+.btns-container {
+  width: 386px;
+  display: flex;
+  gap: 20px;
+}
+button[name=submit-btn],
+button[name=book-btn] {
   width: 386px;
   height: 50px;
   border-radius: 10px;
@@ -89,9 +113,86 @@ button[name=submit-btn] {
   margin-top: 20px;
 }
 
-button[name=submit-btn]:disabled {
+button[name=submit-btn]:disabled,
+button[name=book-btn]:disabled,
+button[name=checkout-btn]:disabled {
   background-color: rgb(176, 176, 176);
   color: linen;
   opacity: 1;
 }
 
+button[name=checkout-btn] {
+  width: 183px;
+  height: 50px;
+  border-radius: 10px;
+  border: 0;
+  background: var(--primary-green);
+  color: white;
+  /* text */
+  font-family: Karla;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  margin-top: 20px;
+}
+
+.booking-text-top {
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  color: #20C997;
+  padding-bottom: 40px;
+}
+.booking-text-top p {
+  padding-bottom: 10px;
+}
+
+.reserve-note-one,
+.reserve-note-two {
+  font-family: Montserrat;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: center;
+  color: #FF8D08;
+  width: 386px;
+  margin-top: 10px;
+}
+.reserve-note-one {
+  font-size: 12px;
+}
+.reserve-note-two {
+  font-size: 16px;
+}
+
+.reserve-label-step-three {
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+}
+.reserve-label-step-three,
+.booking-text-top p {
+  padding-bottom: 25px;
+}
+
+.section-seeya {
+  color:#949494;
+  text-align: center;
+}
+.section-seeya p {
+  padding-bottom: 15px;
+}
+.seeya-header {
+  font-family: Montserrat;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 44px;  
+}
+.seeya {
+  font-family: Montserrat;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 37px;
+}
+.booking-gif {}
