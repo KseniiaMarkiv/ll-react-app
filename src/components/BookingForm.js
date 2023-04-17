@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
 import uuid from "react-uuid";
-import { fetchAPI, submitAPI } from './api';
+import { fetchAPI } from './api';
 import { BookingContext } from './Reservations';
-import ConfirmedBooking from './ConfirmedBooking';
 
 
-function BookingForm() {
-
+function BookingForm(props) {
+const { submitForm } = props;
   const { state, dispatch } = useContext(BookingContext);
 
 // all given data
@@ -27,6 +26,16 @@ function BookingForm() {
     state.guests + ' guests',
     formattedDate,
     state.time,
+  ]
+  const submitData = [
+    state.guests,
+    state.date,
+    state.time,
+    state.occasion,
+    state.firstName,
+    state.lastName,
+    state.phone,
+    state.comment,
   ]
 // END all given data
 
@@ -74,8 +83,8 @@ function BookingForm() {
   };
   const handleSubmit = e => {
     e.preventDefault();
-    alert(data);
-    // alert(JSON.stringify(data, null, 1));
+    submitForm(submitData);
+    console.log('submited');
   };
 //  end new code
 
@@ -166,7 +175,7 @@ function BookingForm() {
                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
 
             <label className="reserve-label" htmlFor="comment">Additional comment:</label>
-            <textarea className="additional-comment" id="comment" rows="4" cols="30" placeholder='Additional comment' value={state.comment} onChange={handleCommentChange}></textarea>
+            <textarea className="additional-comment" id="comment" rows="4" placeholder='Additional comment' value={state.comment} onChange={handleCommentChange}></textarea>
             <p className="reserve-note-one"> Note: You cannot edit your reservation after submission. Please double-check your answer before submitting your reservation request.</p>
             <div className="btns-container">
               <button type="button" role="button" name="checkout-btn" onClick={handlePrevStep}>Back</button>
@@ -176,7 +185,7 @@ function BookingForm() {
         </div>
       )}
       {state.step === 3 && (
-        <form className="booking-form-step-three" onSubmit={handleNextStep}>
+        <form className="booking-form-step-three" onSubmit={handleSubmit}>
           <p className="reserve-label-step-three">You made a reservation:</p>
           <article className="booking-text-top">
            {allData.map((item, index) => (
@@ -186,9 +195,6 @@ function BookingForm() {
            <p className="reserve-note-two">If you cannot come to us, please you can change the date in your account.</p>
           <button type="submit" role="button" name="submit-btn">OK</button>
         </form>
-      )}
-      {state.step === 4 && (
-        <ConfirmedBooking state={state} />
       )}
     </section>
   );

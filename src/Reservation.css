@@ -179,6 +179,7 @@ button[name=checkout-btn] {
 .section-seeya {
   color:#949494;
   text-align: center;
+  margin: 50px auto;
 }
 .section-seeya p {
   padding-bottom: 15px;

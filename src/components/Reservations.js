@@ -1,7 +1,9 @@
 import BookingForm from './BookingForm';
+import ConfirmedBooking from './ConfirmedBooking'
 import '../Reservation.css';
 import React, { useEffect, useReducer } from 'react';
-import { fetchAPI } from './api';
+import { useNavigate } from 'react-router-dom';
+import { fetchAPI, submitAPI } from './api';
 
 export const BookingContext = React.createContext();
 
@@ -47,32 +49,32 @@ export const updateTimes = (state = initializeTimes, action) => {
         return {
           ...state,
           guests: action.payload.guests,
-        };
-        case 'SET_OCCASION':
-          return {
-            ...state,
-            occasion: action.payload.occasion,
-          };
-        case 'SET_FIRST_NAME':
-          return {
-            ...state,
-            firstName: action.payload.firstName,
-        };
-        case 'SET_LAST_NAME':
-          return {
-            ...state,
-            lastName: action.payload.lastName,
-        };
-        case 'SET_PHONE':
-          return {
-            ...state,
-            phone: action.payload.phone,
-        };
-        case 'SET_COMMENT':
-          return {
-            ...state,
-            comment: action.payload.comment,
-        };
+      };
+      case 'SET_OCCASION':
+        return {
+          ...state,
+          occasion: action.payload.occasion,
+      };
+      case 'SET_FIRST_NAME':
+        return {
+          ...state,
+          firstName: action.payload.firstName,
+      };
+      case 'SET_LAST_NAME':
+        return {
+          ...state,
+          lastName: action.payload.lastName,
+      };
+      case 'SET_PHONE':
+        return {
+          ...state,
+          phone: action.payload.phone,
+      };
+      case 'SET_COMMENT':
+        return {
+          ...state,
+          comment: action.payload.comment,
+      };
     default:
       return state;
   }
@@ -82,9 +84,6 @@ export const updateTimes = (state = initializeTimes, action) => {
 function BookingPage() {
   const [state, dispatch] = useReducer(updateTimes, initializeTimes);
 
-  // useEffect(() => {
-  //   console.log('Effect ran!', state);
-  // }, [state]);
   useEffect(() => {
     const getAvailableTimes = async () => {
       const availableTimes = await fetchAPI(state.date);
@@ -93,6 +92,15 @@ function BookingPage() {
     getAvailableTimes();
   }, [state.date]);
 
+  const navigate = useNavigate();
+
+  const submitForm = async (formData) => {
+    const result = await submitAPI(formData);
+    if (result) {
+      navigate('/confirmation');
+    }
+  };
+
   return (
     <div className='App'>
       <div className='booking-jumpotron'>
@@ -100,7 +108,7 @@ function BookingPage() {
       </div>
       <div className='container booking-container'>
         <BookingContext.Provider value={{ state, dispatch }}>
-          <BookingForm />
+          <BookingForm submitForm={submitForm} />
         </BookingContext.Provider>
       </div>
     </div>
