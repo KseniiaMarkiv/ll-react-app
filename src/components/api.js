@@ -10,8 +10,6 @@ const seededRandom = function (seed) {
 export const fetchAPI = (date) => {
   let result = [];
   let random = seededRandom(date.getDate());
-      //this is where you remove the .getDate() part
-      // let random = seededRandom(date);
 
   for(let i = 17; i <= 23; i++) {
       if(random() < 0.5) {

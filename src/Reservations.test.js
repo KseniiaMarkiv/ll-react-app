@@ -1,4 +1,4 @@
-import { updateTimes } from './components/Reservations';
+import { updateTimes, initializeTimes } from './components/Reservations';
 
 
 describe('updateTimes', () => {
@@ -85,6 +85,70 @@ describe('updateTimes', () => {
     };
     const result = updateTimes(state, action);
     expect(result).toEqual(expected);
+  });
+});
+
+describe('updateTimes with new update data', () => {
+  const initialState = initializeTimes;
+
+  it('should update the step when receiving nextStep action', () => {
+    const newState = updateTimes(initialState, { type: 'nextStep' });
+    expect(newState.step).toEqual(2);
+  });
+
+  it('should update the step when receiving prevStep action', () => {
+    const newState = updateTimes(initialState, { type: 'prevStep' });
+    expect(newState.step).toEqual(0);
+  });
+
+  it('should update the date and availableTimes when receiving SET_DATE action', () => {
+    const date = new Date();
+    const availableTimes = ['17:00', '18:30', '19:00'];
+    const newState = updateTimes(initialState, { type: 'SET_DATE', payload: { date, availableTimes } });
+    expect(newState.date).toEqual(date);
+    expect(newState.availableTimes).toEqual(availableTimes);
+  });
+
+  it('should update the time when receiving SET_TIME action', () => {
+    const time = '17:00';
+    const newState = updateTimes(initialState, { type: 'SET_TIME', payload: { time } });
+    expect(newState.time).toEqual(time);
+  });
+
+  it('should update the guests when receiving SET_GUESTS action', () => {
+    const guests = 4;
+    const newState = updateTimes(initialState, { type: 'SET_GUESTS', payload: { guests } });
+    expect(newState.guests).toEqual(guests);
+  });
+
+  it('should update the occasion when receiving SET_OCCASION action', () => {
+    const occasion = 'Birthday';
+    const newState = updateTimes(initialState, { type: 'SET_OCCASION', payload: { occasion } });
+    expect(newState.occasion).toEqual(occasion);
+  });
+
+  it('should update the first name when receiving SET_FIRST_NAME action', () => {
+    const firstName = 'John';
+    const newState = updateTimes(initialState, { type: 'SET_FIRST_NAME', payload: { firstName } });
+    expect(newState.firstName).toEqual(firstName);
+  });
+
+  it('should update the last name when receiving SET_LAST_NAME action', () => {
+    const lastName = 'Doe';
+    const newState = updateTimes(initialState, { type: 'SET_LAST_NAME', payload: { lastName } });
+    expect(newState.lastName).toEqual(lastName);
+  });
+
+  it('should update the phone when receiving SET_PHONE action', () => {
+    const phone = '1234567890';
+    const newState = updateTimes(initialState, { type: 'SET_PHONE', payload: { phone } });
+    expect(newState.phone).toEqual(phone);
+  });
+
+  it('should update the comment when receiving SET_COMMENT action', () => {
+    const comment = 'This is a test comment.';
+    const newState = updateTimes(initialState, { type: 'SET_COMMENT', payload: { comment } });
+    expect(newState.comment).toEqual(comment);
   });
 });
 
