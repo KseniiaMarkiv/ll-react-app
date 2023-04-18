@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import uuid from "react-uuid";
-import { fetchAPI } from './api';
+import { fetchAPI, submitAPI } from './api';
 import { BookingContext } from './Reservations';
+import ConfirmedBooking from './ConfirmedBooking';
 
 
 function BookingForm(props) {
-const { submitForm } = props;
+  const { submitForm } = props;
   const { state, dispatch } = useContext(BookingContext);
 
 // all given data
@@ -81,12 +82,14 @@ const { submitForm } = props;
   const handleCommentChange = (e) => {
     dispatch({ type: 'SET_COMMENT', payload: { comment: e.target.value } });
   };
-  const handleSubmit = e => {
-    e.preventDefault();
-    submitForm(submitData);
-    console.log('submited');
-  };
+
 //  end new code
+const handleSubmit = (e) => {
+  e.preventDefault();
+  submitForm(submitData);
+  console.log('submited');
+
+};
 
   return (
     <section>
@@ -169,10 +172,10 @@ const { submitForm } = props;
                 type="tel" 
                 id="phone" 
                 name="phone" 
-                placeholder="123-333-4444" 
+                placeholder="123-333-4444   11 digits" 
                 value={state.phone} 
                 onChange={handlePhoneChange} 
-                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
+                pattern="[0-9]{3}[0-9]{3}[0-9]{4}" />
 
             <label className="reserve-label" htmlFor="comment">Additional comment:</label>
             <textarea className="additional-comment" id="comment" rows="4" placeholder='Additional comment' value={state.comment} onChange={handleCommentChange}></textarea>
@@ -195,6 +198,9 @@ const { submitForm } = props;
            <p className="reserve-note-two">If you cannot come to us, please you can change the date in your account.</p>
           <button type="submit" role="button" name="submit-btn">OK</button>
         </form>
+      )}
+      {state.step === 4 && (
+        <ConfirmedBooking />
       )}
     </section>
   );

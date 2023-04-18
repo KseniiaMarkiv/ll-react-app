@@ -1,5 +1,4 @@
 import BookingForm from './BookingForm';
-import ConfirmedBooking from './ConfirmedBooking'
 import '../Reservation.css';
 import React, { useEffect, useReducer } from 'react';
 import { useNavigate } from 'react-router-dom';
