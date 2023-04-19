@@ -10,7 +10,7 @@ const initializeTimes = {
   step: 1,
   date: new Date(),
   time: '',
-  guests: 1,
+  guests: '',
   occasion: '',
   availableTimes: [],
   firstName: '',
@@ -48,32 +48,32 @@ export const updateTimes = (state = initializeTimes, action) => {
         return {
           ...state,
           guests: action.payload.guests,
-      };
+        };
       case 'SET_OCCASION':
         return {
           ...state,
           occasion: action.payload.occasion,
-      };
+        };
       case 'SET_FIRST_NAME':
         return {
           ...state,
           firstName: action.payload.firstName,
-      };
+        };
       case 'SET_LAST_NAME':
         return {
           ...state,
           lastName: action.payload.lastName,
-      };
+        };
       case 'SET_PHONE':
         return {
           ...state,
           phone: action.payload.phone,
-      };
+        };
       case 'SET_COMMENT':
         return {
           ...state,
           comment: action.payload.comment,
-      };
+        };
     default:
       return state;
   }
