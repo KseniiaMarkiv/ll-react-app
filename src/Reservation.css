@@ -48,6 +48,10 @@
   max-width: 700px;
   width: 100%;
 }
+.booking-form div.booking-div {
+  display: grid;
+  margin-bottom: 20px;
+}
 .reserve-label {
   font-family: Karla;
   font-size: 16px;
@@ -68,7 +72,6 @@
   font-weight: 600;
   line-height: 17px;
   color: #4E5A56;
-  margin-bottom: 20px;
 }
 .reserve-input::placeholder {
   font-family: 'Ubuntu Mono', monospace;
@@ -211,9 +214,19 @@ button[name=checkout-btn] {
   background: url("../public/Assets/varning.svg") no-repeat 92% 50% rgb(255, 201, 179);
   background-size: 25px;
   outline: 0;
+  margin-bottom: 4px;
+}
+.reserve-input:invalid {
+  margin-bottom: 4px;
+}
+.reserve-input:focus:valid > option {
+  background-color: aliceblue;
 }
 .required-error {
-  padding-left: 10px;
+  padding: 4px 4px 4px 10px;
+}
+.required-error,
+.state-error {
   font-size: 13px;
   font-weight: 500;
   color: tomato;

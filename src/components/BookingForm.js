@@ -1,15 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import uuid from "react-uuid";
 import { fetchAPI, submitAPI } from './api';
 import { BookingContext } from './Reservations';
 import ConfirmedBooking from './ConfirmedBooking';
 
+const phoneRegex = /^(?:\+?\d{10}|\+?\d{3}-\d{3}-\d{4})$/;
 
 function BookingForm(props) {
   const { submitForm } = props;
   const { state, dispatch } = useContext(BookingContext);
 
-// all given data
+  // all given data
   const formattedDate = state.date.toLocaleDateString("en-US", { 
     month: "long", 
     day: "numeric", 
@@ -38,6 +39,7 @@ function BookingForm(props) {
     state.phone,
     state.comment,
   ]
+
 // END all given data
 
   const handleDateChange = async (e) => {
@@ -106,25 +108,24 @@ const handleSubmit = (e) => {
         <div>
           <h1 className='reserve-header'>Reserve a table</h1>
           <form className="booking-form" onSubmit={handleNextStep} >
-            <label className="reserve-label" htmlFor="res-date">
-              Choose date*
-              <span className="required-error">
-                Required
-              </span>
-              </label>
-            <input 
-                  className="reserve-input" 
-                  type="date" 
-                  id="res-date"
-                  min={new Date().toJSON().slice(0, 10)} max="2023-12-31" 
-                  value={state.date.toJSON().slice(0, 10)} 
-                  onChange={handleDateChange} 
-                  />
+            <div className="booking-div">
+              <label className="reserve-label" htmlFor="res-date">
+                Choose date*
+                {!state.date ? <span className="required-error">Required </span> : ''}
+                </label>
+              <input 
+                    className="reserve-input" 
+                    type="date" 
+                    id="res-date"
+                    min={new Date().toJSON().slice(0, 10)} max="2023-12-31" 
+                    value={state.date.toJSON().slice(0, 10)} 
+                    onChange={handleDateChange} 
+                    />
+            </div>
+            <div className="booking-div">
             <label className="reserve-label" htmlFor="res-time">
               Select time*
-             <span className="required-error">
-                Required
-              </span>
+              {!state.time ? <span className="required-error">Required </span> : ''}
             </label>
             <select 
                 className="reserve-input"
@@ -138,25 +139,32 @@ const handleSubmit = (e) => {
                 </option>
               ))}
             </select>
-            <label className="reserve-label" htmlFor="guests">Number of guests</label>
-            <input 
+            </div>
+            <div className='required-div booking-div'>
+              <label className="reserve-label" htmlFor="guests">Number of guests* {!state.guests ? <span className="required-error">Required </span> : ''}</label>
+              <input 
                   className="reserve-input" 
-                type="number" 
-                placeholder="1" min="1" max="10" 
-                id="guests"
-                value={state.guests} 
-                onChange={handleGuestsChange}
-                required />
-            <label className="reserve-label" htmlFor="occasion">Occasion</label>
-            <select 
-                className="reserve-input"
-                id="occasion"
-                value={state.occasion} 
-                onChange={handleOccasionChange} >
-                <option>none</option>
-                <option>Birthday</option>
-                <option>Anniversary</option>
-            </select>
+                  type="number" 
+                  placeholder="1" min="1" max="10" 
+                  id="guests"
+                  value={state.guests} 
+                  onChange={handleGuestsChange}
+                  required />
+              <div className="state-error">{state.guests == 0 ? 'Guests cannot be less than 1' : ''}</div>
+              <div className="state-error">{state.guests > 10 ? 'Guests can be a maximum of 10' : ''}</div>
+            </div>
+            <div className="booking-div">
+              <label className="reserve-label" htmlFor="occasion">Occasion</label>
+              <select 
+                  className="reserve-input"
+                  id="occasion"
+                  value={state.occasion} 
+                  onChange={handleOccasionChange} >
+                  <option>none</option>
+                  <option>Birthday</option>
+                  <option>Anniversary</option>
+              </select>
+            </div>
             <button type="submit" role="button" name="book-btn" disabled={!state.date || !state.time || !state.guests}>Book table</button>
           </form>
         </div>
@@ -170,52 +178,64 @@ const handleSubmit = (e) => {
                 <p key={index}>{item}</p>
               ))}
             </article>
-            <label className="reserve-label" htmlFor="firstName">
-              First Name*
-             <span className="required-error">
-                Required
-              </span>
-            </label>
-            <input 
-                className="reserve-input"
-                type="text" 
-                id="firstName"
-                placeholder="your First name" minLength={1} maxLength={50}
-                value={state.firstName} 
-                onChange={handleFirstNameChange}
-                required />
-            <label className="reserve-label" htmlFor="lastName">
-              Last Name*
-             <span className="required-error">
-                Required
-              </span>
-            </label>
-            <input 
-                className="reserve-input"
-                type="text" 
-                id="lastName" 
-                placeholder="your Last name" minLength={3} maxLength={50}
-                value={state.lastName} 
-                onChange={handleLastNameChange}
-                required />
-            <label className="reserve-label" htmlFor="phone">
-              Phone*
-             <span className="required-error">
-                Required
-              </span>
-            </label>
-            <input 
-                className="reserve-input"
-                type="tel" 
-                id="phone" 
-                name="phone" 
-                placeholder="+1233334444   10 digits" 
-                value={state.phone} 
-                onChange={handlePhoneChange} 
-                pattern="(\+?\d{10})" 
-                required />
-            <label className="reserve-label" htmlFor="comment">Additional comment:</label>
-            <textarea className="additional-comment" id="comment" rows="4" placeholder='Additional comment' value={state.comment} onChange={handleCommentChange}></textarea>
+            <div className="booking-div">
+              <label className="reserve-label" htmlFor="firstName">
+                First Name*
+                {!state.firstName ? <span className="required-error">Required </span> : ''}
+              </label>
+              <input 
+                  className="reserve-input"
+                  type="text" 
+                  id="firstName"
+                  placeholder="your First name" minLength={1} maxLength={50}
+                  value={state.firstName} 
+                  onChange={handleFirstNameChange}
+                  required />
+              <div className="state-error">{state.firstName.length < 1 ? 'First Name cannot be less than 1' : ''}</div>
+              <div className="state-error">{state.firstName.length > 10 ? 'First Name can be a maximum of 50' : ''}</div>
+            </div>
+            <div className="booking-div">
+              <label className="reserve-label" htmlFor="lastName">
+                Last Name*
+                {!state.lastName ? <span className="required-error">Required </span> : ''}
+              </label>
+              <input 
+                  className="reserve-input"
+                  type="text" 
+                  id="lastName" 
+                  placeholder="your Last name" minLength={3} maxLength={50}
+                  value={state.lastName} 
+                  onChange={handleLastNameChange}
+                  required />
+              <div className="state-error">{state.lastName.length < 3 ? 'Last Name cannot be less than 3' : ''}</div>
+              <div className="state-error">{state.lastName.length > 10 ? 'Last Name can be a maximum of 50' : ''}</div>
+            </div>
+            <div className="booking-div">
+              <label className="reserve-label" htmlFor="phone">
+                Phone*
+                {!state.phone ? <span className="required-error">Required </span> : ''}
+              </label>
+              <input 
+                  className="reserve-input"
+                  type="tel" 
+                  id="phone" 
+                  name="phone" 
+                  placeholder="+1233334444 or +123-333-4444" 
+                  value={state.phone} 
+                  onChange={handlePhoneChange} 
+                  pattern="^(?:\+?\d{10}|\+?\d{3}-\d{3}-\d{4})$"
+                  required />
+              <div className="state-error" style={{ display: (!phoneRegex.test(state.phone)) ? 'flex' : 'none', paddingBottom: '4px' }}>
+                {!phoneRegex.test(state.phone) && 'Please provide a valid phone number.'}
+              </div>
+              <div className="state-error" style={{ display: (/^\+?\d{11,}$/.test(state.phone)) ? 'flex' : 'none' }}>
+                {/^\+?\d{11,}$/.test(state.phone) && 'Enter 10 digits phone number.'}
+              </div>
+            </div>
+            <div className="booking-div">
+              <label className="reserve-label" htmlFor="comment">Additional comment:</label>
+              <textarea className="additional-comment" id="comment" rows="4" placeholder='Additional comment' value={state.comment} onChange={handleCommentChange}></textarea>
+            </div>
             <p className="reserve-note-one"> Note: You cannot edit your reservation after submission. Please double-check your answer before submitting your reservation request.</p>
             <div className="btns-container">
               <button type="button" role="button" name="checkout-btn" onClick={handlePrevStep}>Back</button>
