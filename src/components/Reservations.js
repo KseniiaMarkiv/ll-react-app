@@ -1,10 +1,11 @@
 import BookingForm from './BookingForm';
 import '../Reservation.css';
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer, createContext } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import { fetchAPI, submitAPI } from './api';
 
-export const BookingContext = React.createContext();
+export const BookingContext = createContext();
 
 const initializeTimes = {
   step: 1,
@@ -86,7 +87,7 @@ function BookingPage() {
   useEffect(() => {
     const getAvailableTimes = async () => {
       const availableTimes = await fetchAPI(state.date);
-      dispatch({ type: 'SET_DATE', payload: { date: state.date, availableTimes } });
+        dispatch({ type: 'SET_DATE', payload: { date: state.date, availableTimes } });
     };
     getAvailableTimes();
   }, [state.date]);

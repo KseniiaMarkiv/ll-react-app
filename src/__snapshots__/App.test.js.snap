@@ -32,22 +32,32 @@ exports[`App routes renders correctly BookingPage route 1`] = `
             className="reserve-label"
             htmlFor="res-date"
           >
-            Choose date
+            Choose date*
+            <span
+              className="required-error"
+            >
+              Required
+            </span>
           </label>
           <input
             className="reserve-input"
             id="res-date"
             max="2023-12-31"
-            min="2023-04-18"
+            min="2023-04-20"
             onChange={[Function]}
             type="date"
-            value="2023-04-18"
+            value="2023-04-20"
           />
           <label
             className="reserve-label"
             htmlFor="res-time"
           >
-            Select time
+            Select time*
+            <span
+              className="required-error"
+            >
+              Required
+            </span>
           </label>
           <select
             className="reserve-input"
@@ -68,8 +78,9 @@ exports[`App routes renders correctly BookingPage route 1`] = `
             min="1"
             onChange={[Function]}
             placeholder="1"
+            required={true}
             type="number"
-            value={1}
+            value=""
           />
           <label
             className="reserve-label"
@@ -83,6 +94,9 @@ exports[`App routes renders correctly BookingPage route 1`] = `
             onChange={[Function]}
             value=""
           >
+            <option>
+              none
+            </option>
             <option>
               Birthday
             </option>
