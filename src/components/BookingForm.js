@@ -5,11 +5,21 @@ import { BookingContext } from './Reservations';
 import ConfirmedBooking from './ConfirmedBooking';
 
 const phoneRegex = /^(?:\+?\d{10}|\+?\d{3}-\d{3}-\d{4})$/;
+const eventHandlers = [
+  { name: 'handleTimeChange', type: 'SET_TIME', data: 'time' },
+  { name: 'handleGuestsChange', type: 'SET_GUESTS', data: 'guests' },
+  { name: 'handleOccasionChange', type: 'SET_OCCASION', data: 'occasion' },
+  { name: 'handleNextStep', type: 'nextStep', data: 'step' },
+  { name: 'handlePrevStep', type: 'prevStep', data: 'step' },
+  { name: 'handleFirstNameChange', type: 'SET_FIRST_NAME', data: 'firstName' },
+  { name: 'handleLastNameChange', type: 'SET_LAST_NAME', data: 'lastName' },
+  { name: 'handlePhoneChange', type: 'SET_PHONE', data: 'phone' },
+  { name: 'handleCommentChange', type: 'SET_COMMENT', data: 'comment' },
+];
 
 function BookingForm(props) {
   const { submitForm } = props;
   const { state, dispatch } = useContext(BookingContext);
-
   // all given data
   const formattedDate = useMemo(() => {
     return state.date.toLocaleDateString("en-US", { 
@@ -37,17 +47,27 @@ function BookingForm(props) {
   ]
 }, [state.firstName, state.lastName, state.phone, state.guests, formattedDate, state.time]);
 
-const submitData = [
-  state.guests,
-  state.date,
-  state.time,
-  state.occasion,
-  state.firstName,
-  state.lastName,
-  state.phone,
-  state.comment,
-]
+const submitData = [{
+  guests: state.guests,
+  date: formattedDate,
+  time: state.time,
+  occasion: state.occasion,
+  firstName: state.firstName,
+  lastName: state.lastName,
+  phone: state.phone,
+  comment: state.comment,
+}]
+const createHandler = useCallback((type, data) => {
+  return (e) => {
+    e.preventDefault();
+    dispatch({ type, payload: { [data]: e.target.value } });
+  }
+}, [dispatch]);
 
+const eventHandlerMap = {};
+eventHandlers.forEach(({ name, type, data }) => {
+  eventHandlerMap[name] = createHandler(type, data);
+});
 
 // END all given data
 
@@ -58,57 +78,10 @@ const submitData = [
     dispatch({ type: 'SET_DATE', payload: { date: newDate, availableTimes } });
   }, [dispatch]);
 
-  const handleTimeChange = useCallback(async (e) => {
-    e.preventDefault();
-    dispatch({ type: 'SET_TIME', payload: { time: e.target.value } });
-  }, [dispatch]);
-
-  const handleGuestsChange = useCallback(async (e) => {
-    e.preventDefault();
-    dispatch({ type: 'SET_GUESTS', payload: { guests: e.target.value } });
-  }, [dispatch]);
-
-  const handleOccasionChange = useCallback(async (e) => {
-    e.preventDefault();
-    dispatch({ type: 'SET_OCCASION', payload: { occasion: e.target.value } });
-  }, [dispatch]);
-//  new code
-
-  const handleNextStep = useCallback(async (e) => {
-    e.preventDefault();
-    dispatch({ type: 'nextStep', payload: { step: e.target.value } });
-  }, [dispatch]);
-
-  const handlePrevStep = useCallback(async (e) => {
-    e.preventDefault();
-    dispatch({ type: 'prevStep', payload: { step: e.target.value }  });
-  }, [dispatch]);
-
-  const handleFirstNameChange = useCallback(async (e) => {
-    e.preventDefault();
-    dispatch({ type: 'SET_FIRST_NAME', payload: { firstName: e.target.value } });
-  }, [dispatch]);
-
-  const handleLastNameChange = useCallback(async (e) => {
-    e.preventDefault();
-    dispatch({ type: 'SET_LAST_NAME', payload: { lastName: e.target.value } });
-  }, [dispatch]);
-
-  const handlePhoneChange = useCallback(async (e) => {
-    e.preventDefault();
-    dispatch({ type: 'SET_PHONE', payload: { phone: e.target.value } });
-  }, [dispatch]);
-
-  const handleCommentChange = useCallback(async (e) => {
-    e.preventDefault();
-    dispatch({ type: 'SET_COMMENT', payload: { comment: e.target.value } });
-  }, [dispatch]);
-
-//  end new code
 const handleSubmit = (e) => {
   e.preventDefault();
   submitForm(submitData);
-  console.log('Form submitted:', submitData);
+  console.table('Form submitted:' + " " + JSON.stringify(submitData, null, 1));
 };
 
   return (
@@ -116,7 +89,7 @@ const handleSubmit = (e) => {
       {state.step === 1 && (
         <div>
           <h1 className='reserve-header'>Reserve a table</h1>
-          <form className="booking-form" onSubmit={handleNextStep} >
+          <form className="booking-form" onSubmit={eventHandlerMap.handleNextStep} >
             <div className="booking-div">
               <label className="reserve-label" htmlFor="res-date">
                 Choose date*
@@ -140,7 +113,7 @@ const handleSubmit = (e) => {
                 className="reserve-input"
                 id="res-time"
                   value={state.time} 
-                  onChange={handleTimeChange}
+                  onChange={eventHandlerMap.handleTimeChange}
                   >
               {state.availableTimes.map((time) => (
                 <option key={uuid()} value={time}>
@@ -157,7 +130,7 @@ const handleSubmit = (e) => {
                   placeholder="1" min="1" max="10" 
                   id="guests"
                   value={state.guests} 
-                  onChange={handleGuestsChange}
+                  onChange={eventHandlerMap.handleGuestsChange}
                   required />
               <div className="state-error">{state.guests == 0 ? 'Guests cannot be less than 1' : ''}</div>
               <div className="state-error">{state.guests > 10 ? 'Guests can be a maximum of 10' : ''}</div>
@@ -168,20 +141,20 @@ const handleSubmit = (e) => {
                   className="reserve-input"
                   id="occasion"
                   value={state.occasion} 
-                  onChange={handleOccasionChange} >
+                  onChange={eventHandlerMap.handleOccasionChange} >
                   <option>none</option>
                   <option>Birthday</option>
                   <option>Anniversary</option>
               </select>
             </div>
-            <button type="submit" aria-label="Submit the first step form" role="button" name="book-btn" disabled={!state.date || !state.time || !state.guests}>Book table</button>
+            <button type="submit" aria-label="Submit the first step form" role="button" name="book-btn" disabled={!state.date || !state.time || !state.guests || state.guests < 1 || state.guests > 10 }>Book table</button>
           </form>
         </div>
       )}
       {state.step === 2 && (
         <div>
           <h1 className='reserve-header'>Your reservation:</h1>
-          <form className="booking-form" onSubmit={handleNextStep}>
+          <form className="booking-form" onSubmit={eventHandlerMap.handleNextStep}>
             <article className="booking-text-top">
             {data.map((item, index) => (
                 <p key={index}>{item}</p>
@@ -198,7 +171,7 @@ const handleSubmit = (e) => {
                   id="firstName"
                   placeholder="your First name" minLength={1} maxLength={50}
                   value={state.firstName} 
-                  onChange={handleFirstNameChange}
+                  onChange={eventHandlerMap.handleFirstNameChange}
                   required />
               <div className="state-error">{state.firstName.length < 1 ? 'First Name cannot be less than 1' : ''}</div>
               <div className="state-error">{state.firstName.length > 10 ? 'First Name can be a maximum of 50' : ''}</div>
@@ -214,7 +187,7 @@ const handleSubmit = (e) => {
                   id="lastName" 
                   placeholder="your Last name" minLength={3} maxLength={50}
                   value={state.lastName} 
-                  onChange={handleLastNameChange}
+                  onChange={eventHandlerMap.handleLastNameChange}
                   required />
               <div className="state-error">{state.lastName.length < 3 ? 'Last Name cannot be less than 3' : ''}</div>
               <div className="state-error">{state.lastName.length > 10 ? 'Last Name can be a maximum of 50' : ''}</div>
@@ -231,7 +204,7 @@ const handleSubmit = (e) => {
                   name="phone" 
                   placeholder="+1233334444 or +123-333-4444" 
                   value={state.phone} 
-                  onChange={handlePhoneChange} 
+                  onChange={eventHandlerMap.handlePhoneChange} 
                   pattern="^(?:\+?\d{10}|\+?\d{3}-\d{3}-\d{4})$"
                   required />
               <div className="state-error" style={{ display: (!phoneRegex.test(state.phone)) ? 'flex' : 'none', paddingBottom: '4px' }}>
@@ -243,12 +216,12 @@ const handleSubmit = (e) => {
             </div>
             <div className="booking-div">
               <label className="reserve-label" htmlFor="comment">Additional comment:</label>
-              <textarea className="additional-comment" id="comment" rows="4" placeholder='Additional comment' value={state.comment} onChange={handleCommentChange}></textarea>
+              <textarea className="additional-comment" id="comment" rows="4" placeholder='Additional comment' value={state.comment} onChange={eventHandlerMap.handleCommentChange}></textarea>
             </div>
             <p className="reserve-note-one"> Note: You cannot edit your reservation after submission. Please double-check your answer before submitting your reservation request.</p>
             <div className="btns-container">
-              <button type="button" aria-label="Back to the first step form" role="button" name="checkout-btn" onClick={handlePrevStep}>Back</button>
-              <button type="submit" aria-label="Submit the second step form" role="button" name="checkout-btn" disabled={!state.firstName || !state.lastName || !state.phone}>Checkout</button>
+              <button type="button" aria-label="Back to the first step form" role="button" name="checkout-btn" onClick={eventHandlerMap.handlePrevStep}>Back</button>
+              <button type="submit" aria-label="Submit the second step form" role="button" name="checkout-btn" disabled={!state.firstName || state.firstName < 1 || !state.lastName || state.lastName < 3 || !state.phone}>Checkout</button>
             </div>
           </form>
         </div>
