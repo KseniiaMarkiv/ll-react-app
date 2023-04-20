@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useCallback, useMemo } from "react";
 import uuid from "react-uuid";
 import { fetchAPI, submitAPI } from './api';
 import { BookingContext } from './Reservations';
@@ -11,89 +11,98 @@ function BookingForm(props) {
   const { state, dispatch } = useContext(BookingContext);
 
   // all given data
-  const formattedDate = state.date.toLocaleDateString("en-US", { 
-    month: "long", 
-    day: "numeric", 
-    year: "numeric" 
-  });
-
-  const data = [
-    state.guests + ' guest(s)',
-    formattedDate,
-    state.time,
-  ]
-  const allData = [
+  const formattedDate = useMemo(() => {
+    return state.date.toLocaleDateString("en-US", { 
+      month: "long", 
+      day: "numeric", 
+      year: "numeric" 
+    });
+  }, [state.date]);
+  
+  const data = useMemo(() => {
+    return [
+      state.guests + ' guest(s)',
+      formattedDate,
+      state.time,
+    ];
+  }, [state.guests, formattedDate, state.time]);
+  
+  const allData = useMemo(() => {
+    return [
     state.firstName + ' ' + state.lastName + ',',
     state.phone,
     state.guests + ' guests',
     formattedDate,
     state.time,
   ]
-  const submitData = [
-    state.guests,
-    state.date,
-    state.time,
-    state.occasion,
-    state.firstName,
-    state.lastName,
-    state.phone,
-    state.comment,
-  ]
+}, [state.firstName, state.lastName, state.phone, state.guests, formattedDate, state.time]);
+
+const submitData = [
+  state.guests,
+  state.date,
+  state.time,
+  state.occasion,
+  state.firstName,
+  state.lastName,
+  state.phone,
+  state.comment,
+]
+
 
 // END all given data
 
-  const handleDateChange = async (e) => {
+ const handleDateChange = useCallback(async (e) => {
     e.preventDefault();
     const newDate = new Date(e.target.value);
     const availableTimes = await fetchAPI(newDate);
     dispatch({ type: 'SET_DATE', payload: { date: newDate, availableTimes } });
-  };
+  }, [dispatch]);
 
-  const handleTimeChange = (e) => {
+  const handleTimeChange = useCallback(async (e) => {
     e.preventDefault();
     dispatch({ type: 'SET_TIME', payload: { time: e.target.value } });
-  };
+  }, [dispatch]);
 
-  const handleGuestsChange = (e) => {
+  const handleGuestsChange = useCallback(async (e) => {
     e.preventDefault();
     dispatch({ type: 'SET_GUESTS', payload: { guests: e.target.value } });
-  };
+  }, [dispatch]);
 
-  const handleOccasionChange = (e) => {
+  const handleOccasionChange = useCallback(async (e) => {
     e.preventDefault();
     dispatch({ type: 'SET_OCCASION', payload: { occasion: e.target.value } });
-  };
+  }, [dispatch]);
 //  new code
 
-  const handleNextStep = (e) => {
+  const handleNextStep = useCallback(async (e) => {
     e.preventDefault();
     dispatch({ type: 'nextStep', payload: { step: e.target.value } });
-  };
+  }, [dispatch]);
 
-  const handlePrevStep = (e) => {
+  const handlePrevStep = useCallback(async (e) => {
     e.preventDefault();
     dispatch({ type: 'prevStep', payload: { step: e.target.value }  });
-  };
+  }, [dispatch]);
 
-  const handleFirstNameChange = (e) => {
+  const handleFirstNameChange = useCallback(async (e) => {
     e.preventDefault();
     dispatch({ type: 'SET_FIRST_NAME', payload: { firstName: e.target.value } });
-  };
+  }, [dispatch]);
 
-  const handleLastNameChange = (e) => {
+  const handleLastNameChange = useCallback(async (e) => {
     e.preventDefault();
     dispatch({ type: 'SET_LAST_NAME', payload: { lastName: e.target.value } });
-  };
+  }, [dispatch]);
 
-  const handlePhoneChange = (e) => {
+  const handlePhoneChange = useCallback(async (e) => {
     e.preventDefault();
     dispatch({ type: 'SET_PHONE', payload: { phone: e.target.value } });
-  };
+  }, [dispatch]);
 
-  const handleCommentChange = (e) => {
+  const handleCommentChange = useCallback(async (e) => {
     e.preventDefault();
     dispatch({ type: 'SET_COMMENT', payload: { comment: e.target.value } });
-  };
+  }, [dispatch]);
 
 //  end new code
 const handleSubmit = (e) => {
