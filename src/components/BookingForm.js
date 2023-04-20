@@ -165,7 +165,7 @@ const handleSubmit = (e) => {
                   <option>Anniversary</option>
               </select>
             </div>
-            <button type="submit" role="button" name="book-btn" disabled={!state.date || !state.time || !state.guests}>Book table</button>
+            <button type="submit" aria-label="Submit the first step form" role="button" name="book-btn" disabled={!state.date || !state.time || !state.guests}>Book table</button>
           </form>
         </div>
       )}
@@ -238,8 +238,8 @@ const handleSubmit = (e) => {
             </div>
             <p className="reserve-note-one"> Note: You cannot edit your reservation after submission. Please double-check your answer before submitting your reservation request.</p>
             <div className="btns-container">
-              <button type="button" role="button" name="checkout-btn" onClick={handlePrevStep}>Back</button>
-              <button type="submit" role="button" name="checkout-btn" disabled={!state.firstName || !state.lastName || !state.phone}>Checkout</button>
+              <button type="button" aria-label="Back to the first step form" role="button" name="checkout-btn" onClick={handlePrevStep}>Back</button>
+              <button type="submit" aria-label="Submit the second step form" role="button" name="checkout-btn" disabled={!state.firstName || !state.lastName || !state.phone}>Checkout</button>
             </div>
           </form>
         </div>
@@ -253,7 +253,7 @@ const handleSubmit = (e) => {
             ))}
            </article>
            <p className="reserve-note-two">If you cannot come to us, please you can change the date in your account.</p>
-          <button type="submit" role="button" name="submit-btn">OK</button>
+          <button type="submit" aria-label="Submit all steps form" role="button" name="submit-btn">OK</button>
         </form>
       )}
       {state.step === 4 && (

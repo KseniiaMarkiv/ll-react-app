@@ -28,82 +28,106 @@ exports[`App routes renders correctly BookingPage route 1`] = `
           className="booking-form"
           onSubmit={[Function]}
         >
-          <label
-            className="reserve-label"
-            htmlFor="res-date"
+          <div
+            className="booking-div"
           >
-            Choose date*
-            <span
-              className="required-error"
+            <label
+              className="reserve-label"
+              htmlFor="res-date"
             >
-              Required
-            </span>
-          </label>
-          <input
-            className="reserve-input"
-            id="res-date"
-            max="2023-12-31"
-            min="2023-04-20"
-            onChange={[Function]}
-            type="date"
-            value="2023-04-20"
-          />
-          <label
-            className="reserve-label"
-            htmlFor="res-time"
+              Choose date*
+            </label>
+            <input
+              className="reserve-input"
+              id="res-date"
+              max="2023-12-31"
+              min="2023-04-20"
+              onChange={[Function]}
+              type="date"
+              value="2023-04-20"
+            />
+          </div>
+          <div
+            className="booking-div"
           >
-            Select time*
-            <span
-              className="required-error"
+            <label
+              className="reserve-label"
+              htmlFor="res-time"
             >
-              Required
-            </span>
-          </label>
-          <select
-            className="reserve-input"
-            id="res-time"
-            onChange={[Function]}
-            value=""
-          />
-          <label
-            className="reserve-label"
-            htmlFor="guests"
+              Select time*
+              <span
+                className="required-error"
+              >
+                Required 
+              </span>
+            </label>
+            <select
+              className="reserve-input"
+              id="res-time"
+              onChange={[Function]}
+              value=""
+            />
+          </div>
+          <div
+            className="required-div booking-div"
           >
-            Number of guests
-          </label>
-          <input
-            className="reserve-input"
-            id="guests"
-            max="10"
-            min="1"
-            onChange={[Function]}
-            placeholder="1"
-            required={true}
-            type="number"
-            value=""
-          />
-          <label
-            className="reserve-label"
-            htmlFor="occasion"
+            <label
+              className="reserve-label"
+              htmlFor="guests"
+            >
+              Number of guests* 
+              <span
+                className="required-error"
+              >
+                Required 
+              </span>
+            </label>
+            <input
+              className="reserve-input"
+              id="guests"
+              max="10"
+              min="1"
+              onChange={[Function]}
+              placeholder="1"
+              required={true}
+              type="number"
+              value=""
+            />
+            <div
+              className="state-error"
+            >
+              Guests cannot be less than 1
+            </div>
+            <div
+              className="state-error"
+            />
+          </div>
+          <div
+            className="booking-div"
           >
-            Occasion
-          </label>
-          <select
-            className="reserve-input"
-            id="occasion"
-            onChange={[Function]}
-            value=""
-          >
-            <option>
-              none
-            </option>
-            <option>
-              Birthday
-            </option>
-            <option>
-              Anniversary
-            </option>
-          </select>
+            <label
+              className="reserve-label"
+              htmlFor="occasion"
+            >
+              Occasion
+            </label>
+            <select
+              className="reserve-input"
+              id="occasion"
+              onChange={[Function]}
+              value=""
+            >
+              <option>
+                none
+              </option>
+              <option>
+                Birthday
+              </option>
+              <option>
+                Anniversary
+              </option>
+            </select>
+          </div>
           <button
             disabled={true}
             name="book-btn"
