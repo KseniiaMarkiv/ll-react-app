@@ -15,7 +15,10 @@ header img {
   position: relative;
   bottom: -3px;
 }
-.Navbar ul {
+.menu-toggle {
+  display: none;
+}
+.menu {
   text-align: center;
   display: flex;
   flex-flow: row wrap;
@@ -47,6 +50,8 @@ header img {
 .MainSection {
   width: 100svw;
   height: auto;
+  z-index: 10;
+  position: relative;
 }
 .hero-sections {
   background-color: var(--primary-green);

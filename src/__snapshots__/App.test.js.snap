@@ -41,10 +41,10 @@ exports[`App routes renders correctly BookingPage route 1`] = `
               className="reserve-input"
               id="res-date"
               max="2023-12-31"
-              min="2023-04-20"
+              min="2023-04-21"
               onChange={[Function]}
               type="date"
-              value="2023-04-20"
+              value="2023-04-21"
             />
           </div>
           <div
@@ -129,6 +129,7 @@ exports[`App routes renders correctly BookingPage route 1`] = `
             </select>
           </div>
           <button
+            aria-label="Submit the first step form"
             disabled={true}
             name="book-btn"
             role="button"

@@ -2,6 +2,7 @@ import './App.css';
 import './Common.css';
 import './Specific.css';
 import './Footer.css';
+import './Media_queries.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Header from './components/Header';
