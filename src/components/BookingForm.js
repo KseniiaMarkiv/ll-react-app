@@ -16,6 +16,8 @@ const eventHandlers = [
   { name: 'handlePhoneChange', type: 'SET_PHONE', data: 'phone' },
   { name: 'handleCommentChange', type: 'SET_COMMENT', data: 'comment' },
 ];
+const actualDate = new Date()
+const eoYear = new Date(actualDate.getFullYear(),12,0)
 
 function BookingForm(props) {
   const { submitForm } = props;
@@ -99,7 +101,7 @@ const handleSubmit = (e) => {
                     className="reserve-input" 
                     type="date" 
                     id="res-date"
-                    min={new Date().toJSON().slice(0, 10)} max="2023-12-31" 
+                    min={new Date().toJSON().slice(0, 10)} max="2024-12-31"
                     value={state.date.toJSON().slice(0, 10)} 
                     onChange={handleDateChange} 
                     />

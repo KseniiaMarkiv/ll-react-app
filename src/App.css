@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300;0,400;1,500;1,600;1,700;1,800&family=Markazi+Text:wght@400;500;600;700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+
 :root {
   --secondary-black: #333333;
   --dropdown-color: #EDEFEE;
@@ -57,8 +59,18 @@
 
 .future-page {
   color: tomato;
-  height: 500px;
+  font-family: 'Dancing Script', cursive;
 }
-.future-page::after {
-  content: '😜';
+.development-container {
+  height: 500px;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  flex-direction: row; 
+}
+
+@media screen and (max-width: 768px) {
+  .development-container {
+    flex-direction: column; 
+  }
 }

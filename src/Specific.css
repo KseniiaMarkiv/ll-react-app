@@ -9,7 +9,7 @@
 
 .text-two-section h1 {
   font-family: Markazi Text;
-  font-size: 85px;
+  font-size: 75px;
   font-weight: 600;
   color: var(--primary-yellow);
   margin-top: 10px;
@@ -20,7 +20,7 @@
   font-weight: 500;
   color: var(--secondary-pastel);
   position: relative;
-  top: -30px;
+  top: -10px;
 }
 
 .text-two-section-description {

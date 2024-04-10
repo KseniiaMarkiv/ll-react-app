@@ -40,11 +40,11 @@ exports[`App routes renders correctly BookingPage route 1`] = `
             <input
               className="reserve-input"
               id="res-date"
-              max="2023-12-31"
-              min="2023-04-21"
+              max="2024-12-31"
+              min="2024-04-10"
               onChange={[Function]}
               type="date"
-              value="2023-04-21"
+              value="2024-04-10"
             />
           </div>
           <div
